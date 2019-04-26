@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  MockNotes
+
+  Created by Raphael Souza on 2019-04-26.
+  Copyright © 2019 Raphael Inc. All rights reserved.
+*/
+
+/// General
+"save" = "Save";
+"cancel" = "Cancel";
+
+/// Home view
+"notes" = "Notes";
+
+/// Details view
+"note" = "Note";
+"wait_thats_ilegal" = "Wait. That's illegal!";
+"we_have_a_problem" = "Houston, we have a problem.";

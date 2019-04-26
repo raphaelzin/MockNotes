@@ -1,0 +1,11 @@
+framework module RESTManager {
+  umbrella header "RESTManager.h"
+
+  export *
+  module * { export * }
+}
+
+module RESTManager.Swift {
+    header "RESTManager-Swift.h"
+    requires objc
+}
