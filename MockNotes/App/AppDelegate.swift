@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Config.initialize {
             $0.baseUrl = Environnement.getValue(forKey: .backendURL)
         }
-        Config.verbose = true
+//        Config.verbose = true
         
         setupAppearence()
         

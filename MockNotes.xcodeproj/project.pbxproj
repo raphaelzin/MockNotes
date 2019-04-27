@@ -38,6 +38,8 @@
 		1CAEA0842273C073002DEF97 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA0822273C073002DEF97 /* Note+CoreDataProperties.swift */; };
 		1CAEA0852273C073002DEF97 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA0832273C073002DEF97 /* Note+CoreDataClass.swift */; };
 		1CAEA0892273D27A002DEF97 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA0882273D27A002DEF97 /* Date.swift */; };
+		1CAEA08D2273D9AF002DEF97 /* NotesRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA08C2273D9AF002DEF97 /* NotesRemoteDataSource.swift */; };
+		1CAEA08F2273D9D1002DEF97 /* NotesLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA08E2273D9D1002DEF97 /* NotesLocalDataSource.swift */; };
 		F17B7E94E731246EBCA5414E /* Pods_MockNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B04A22510ADC3542B0C213 /* Pods_MockNotes.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +93,8 @@
 		1CAEA0822273C073002DEF97 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1CAEA0832273C073002DEF97 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1CAEA0882273D27A002DEF97 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		1CAEA08C2273D9AF002DEF97 /* NotesRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesRemoteDataSource.swift; sourceTree = "<group>"; };
+		1CAEA08E2273D9D1002DEF97 /* NotesLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesLocalDataSource.swift; sourceTree = "<group>"; };
 		DB4FA41809DC3A0B7EFDBEA7 /* Pods-MockNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockNotes.release.xcconfig"; path = "Target Support Files/Pods-MockNotes/Pods-MockNotes.release.xcconfig"; sourceTree = "<group>"; };
 		E9B04A22510ADC3542B0C213 /* Pods_MockNotes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockNotes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -320,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				1CAEA0742273B746002DEF97 /* NotesService.swift */,
+				1CAEA08A2273D897002DEF97 /* DataSources */,
 				1CAEA0762273B75B002DEF97 /* RNote.swift */,
 			);
 			path = Notes;
@@ -332,6 +337,15 @@
 				1CAEA07A2273B7DF002DEF97 /* Release.xcconfig */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		1CAEA08A2273D897002DEF97 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				1CAEA08C2273D9AF002DEF97 /* NotesRemoteDataSource.swift */,
+				1CAEA08E2273D9D1002DEF97 /* NotesLocalDataSource.swift */,
+			);
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 		6C89D34C429418D7137A04C8 /* Frameworks */ = {
@@ -484,9 +498,11 @@
 				1CAEA0502273B4DE002DEF97 /* Localizable.swift in Sources */,
 				1CAEA0672273B63D002DEF97 /* NotesPresenter.swift in Sources */,
 				1CAEA0772273B75B002DEF97 /* RNote.swift in Sources */,
+				1CAEA08F2273D9D1002DEF97 /* NotesLocalDataSource.swift in Sources */,
 				1CAEA04C2273B4B1002DEF97 /* ACNavigationBar.swift in Sources */,
 				1CAEA05F2273B5C2002DEF97 /* HomeCoordinator.swift in Sources */,
 				1CAEA0702273B6EB002DEF97 /* NoteDetailsViewController.swift in Sources */,
+				1CAEA08D2273D9AF002DEF97 /* NotesRemoteDataSource.swift in Sources */,
 				1CAEA0212273B0F9002DEF97 /* AppDelegate.swift in Sources */,
 				1CAEA0432273B41E002DEF97 /* String.swift in Sources */,
 				1CAEA03D2273B353002DEF97 /* Environnement.swift in Sources */,
