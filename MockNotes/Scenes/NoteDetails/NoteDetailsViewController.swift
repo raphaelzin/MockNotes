@@ -12,19 +12,13 @@ import RxSwift
 import RxCocoa
 
 protocol NoteDetailsView: class {
-    func bindData(title: BehaviorRelay<String?>, content: BehaviorRelay<String?>)
+    func bindData(content: BehaviorRelay<String?>)
     func display(_ error: Error)
 }
 
 class NoteDetailsViewController: UIViewController {
     
     // MARK: UI Components
-    
-    private lazy var titleField: UITextField = {
-        let tf = UITextField()
-        tf.borderStyle = .none
-        return tf
-    }()
     
     private lazy var contentTextView: UITextView = {
         let tv = UITextView()
@@ -71,7 +65,7 @@ class NoteDetailsViewController: UIViewController {
         contentTextView.layer.shadowPath = shadowPath.cgPath
         contentTextView.layer.shadowColor = UIColor.black.cgColor
         contentTextView.layer.shadowRadius = 10
-        contentTextView.layer.shadowOpacity = 0.3
+        contentTextView.layer.shadowOpacity = 0.16
         contentTextView.layer.shadowOffset = CGSize(width: 0.0, height: 10)
     }
     
@@ -114,20 +108,10 @@ private extension NoteDetailsViewController {
     }
     
     func configureLayout() {
-        view.addSubview(titleField)
-        titleField.snp.makeConstraints { make in
-            if #available(iOS 11.0, *) {
-                make.leading.top.trailing.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: 16, left: 24, bottom: 0, right: 24))
-            } else {
-                make.leading.top.trailing.equalTo(view).inset(UIEdgeInsets(top: 16, left: 24, bottom: 0, right: 24))
-            }
-            make.height.equalTo(24)
-        }
         
         view.addSubview(contentTextView)
         contentTextView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view).inset(UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24))
-            make.top.equalTo(titleField.snp.bottom).offset(16)
+            make.leading.top.trailing.equalTo(view).inset(UIEdgeInsets(top: 16, left: 24, bottom: 0, right: 24))
             make.height.equalTo(200)
         }
     }
@@ -146,12 +130,9 @@ extension NoteDetailsViewController: NoteDetailsView {
         present(alert, animated: true)
     }
     
-    func bindData(title: BehaviorRelay<String?>, content: BehaviorRelay<String?>) {
+    func bindData(content: BehaviorRelay<String?>) {
         // Set the value from relay, then bind the text data back to the relay.
         contentTextView.text = content.value ?? ""
         contentTextView.rx.text.asDriver().drive(content).disposed(by: disposeBag)
-        
-        titleField.text = title.value ?? ""
-        titleField.rx.text.asDriver().drive(title).disposed(by: disposeBag)
     }
 }

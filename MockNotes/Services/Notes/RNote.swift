@@ -12,6 +12,16 @@ import Foundation
 
 class RNote: Codable {
     let id: String
-    var title: String
     var content: String
+    private var createdAtRaw: String
+    
+    var createdAt: Date? {
+        return createdAtRaw.date(as: .iso8601)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case content
+        case createdAtRaw = "createdAt"
+    }
 }

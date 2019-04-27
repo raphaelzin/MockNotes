@@ -9,17 +9,17 @@
 import UIKit
 
 class NoteCell: UITableViewCell {
-    private(set) var note: RNote!
+    private(set) var note: Note!
     
-    private lazy var titleLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .lightGray
         return label
     }()
     
     private lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 3
-        label.textColor = .lightGray
         return label
     }()
     
@@ -37,16 +37,16 @@ class NoteCell: UITableViewCell {
 
 private extension NoteCell {
     func configureLayout() {
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.leading.top.trailing.equalTo(self).inset(UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16))
-            make.height.equalTo(22)
-        }
-        
         addSubview(contentLabel)
         contentLabel.snp.makeConstraints { make in
-            make.leading.bottom.trailing.equalTo(self).inset(UIEdgeInsets(top: 0, left: 16, bottom: 8, right: 16))
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.leading.top.trailing.equalTo(self).inset(UIEdgeInsets(top: 16, left: 16, bottom: 8, right: 16))
+        }
+        
+        addSubview(dateLabel)
+        dateLabel.snp.makeConstraints { make in
+            make.bottom.trailing.equalTo(self).inset(UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 16))
+            make.height.equalTo(16)
+            make.top.equalTo(contentLabel.snp.bottom).offset(8)
         }
     }
 }
@@ -55,7 +55,7 @@ private extension NoteCell {
 
 extension NoteCell {
     func configure(with note: RNote) {
-        titleLabel.text   = note.title
         contentLabel.text = note.content
+        dateLabel.text = "\(note.createdAt?.formated(as: .simple) ?? "")"
     }
 }

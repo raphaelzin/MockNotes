@@ -13,4 +13,11 @@ extension String {
     var localized: String {
         return NSLocalizedString(self, comment: self)
     }
+    
+    func date(as format: Date.Format) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format.value
+        return dateFormatter.date(from: self)
+    }
+    
 }

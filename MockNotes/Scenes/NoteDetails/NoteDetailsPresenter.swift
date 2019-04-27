@@ -30,7 +30,6 @@ class NoteDetailsPresenter {
     unowned var view: NoteDetailsView
     
     private lazy var contentRelay = BehaviorRelay<String?>(value: note.content)
-    private lazy var titleRelay   = BehaviorRelay<String?>(value: note.title)
     
     // MARK: Initializer
     
@@ -38,7 +37,7 @@ class NoteDetailsPresenter {
         self.view = view
         self.note = note
         
-        self.view.bindData(title: titleRelay, content: contentRelay)
+        self.view.bindData(content: contentRelay)
     }
 }
 
@@ -47,7 +46,6 @@ class NoteDetailsPresenter {
 extension NoteDetailsPresenter: NoteDetailsViewPresenter {
     func saveChanges() {
         note.content = contentRelay.value ?? ""
-        note.title   = titleRelay.value ?? ""
         
         // Save changes and if there's an error, let the view know
         notesService.update(note) { [weak self] (error) in

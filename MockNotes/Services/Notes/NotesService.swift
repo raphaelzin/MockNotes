@@ -3,7 +3,7 @@
 //  TestApp
 //
 //  Created by Raphael Souza on 2019-04-21.
-//  Copyright © 2019 AlayaCare. All rights reserved.
+//  
 //
 
 import Foundation
