@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator.start()
         
         Config.initialize {
-            $0.baseUrl = Environnement.getValue(forKey: .backendURL)
+            $0.baseUrl = Environment.getValue(forKey: .backendURL)
         }
 //        Config.verbose = true
         

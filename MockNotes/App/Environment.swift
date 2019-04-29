@@ -1,5 +1,5 @@
 //
-//  Environnement.swift
+//  Environment.swift
 //  MockNotes
 //
 //  Created by Raphael Souza on 2019-04-26.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum EnvironnementVariable: String {
+enum EnvironmentVariable: String {
     case backendURL = "BACKEND_URL"
     case appName = "APP_NAME"
 }
 
-struct Environnement {
-    static func getValue(forKey key: EnvironnementVariable) -> String {
+struct Environment {
+    static func getValue(forKey key: EnvironmentVariable) -> String {
         return infoForKey(key.rawValue)
     }
     

@@ -13,7 +13,7 @@
 		1CAEA02E2273B0FC002DEF97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAEA02C2273B0FC002DEF97 /* LaunchScreen.storyboard */; };
 		1CAEA0382273B30F002DEF97 /* RESTManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAEA0362273B2FC002DEF97 /* RESTManager.framework */; };
 		1CAEA0392273B30F002DEF97 /* RESTManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAEA0362273B2FC002DEF97 /* RESTManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1CAEA03D2273B353002DEF97 /* Environnement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA03C2273B353002DEF97 /* Environnement.swift */; };
+		1CAEA03D2273B353002DEF97 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA03C2273B353002DEF97 /* Environment.swift */; };
 		1CAEA0432273B41E002DEF97 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA0422273B41E002DEF97 /* String.swift */; };
 		1CAEA0452273B42A002DEF97 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA0442273B42A002DEF97 /* UITableView.swift */; };
 		1CAEA0472273B436002DEF97 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEA0462273B436002DEF97 /* UITableViewCell.swift */; };
@@ -66,7 +66,7 @@
 		1CAEA02D2273B0FC002DEF97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1CAEA02F2273B0FC002DEF97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CAEA0362273B2FC002DEF97 /* RESTManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RESTManager.framework; sourceTree = "<group>"; };
-		1CAEA03C2273B353002DEF97 /* Environnement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environnement.swift; sourceTree = "<group>"; };
+		1CAEA03C2273B353002DEF97 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		1CAEA0422273B41E002DEF97 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		1CAEA0442273B42A002DEF97 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		1CAEA0462273B436002DEF97 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				1CAEA0202273B0F9002DEF97 /* AppDelegate.swift */,
-				1CAEA03C2273B353002DEF97 /* Environnement.swift */,
+				1CAEA03C2273B353002DEF97 /* Environment.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -505,7 +505,7 @@
 				1CAEA08D2273D9AF002DEF97 /* NotesRemoteDataSource.swift in Sources */,
 				1CAEA0212273B0F9002DEF97 /* AppDelegate.swift in Sources */,
 				1CAEA0432273B41E002DEF97 /* String.swift in Sources */,
-				1CAEA03D2273B353002DEF97 /* Environnement.swift in Sources */,
+				1CAEA03D2273B353002DEF97 /* Environment.swift in Sources */,
 				1CAEA05B2273B598002DEF97 /* RootViewCoordinator.swift in Sources */,
 				1CAEA0892273D27A002DEF97 /* Date.swift in Sources */,
 				1CAEA05D2273B5AF002DEF97 /* AppCoordinator.swift in Sources */,

@@ -96,7 +96,7 @@ private extension NoteDetailsViewController {
         view.backgroundColor = .white
         view.addGestureRecognizer(tap)
         
-        // Avoids view beign extended and beign hiden behind nav bar.
+        // Avoids view being extended and being hiden behind nav bar.
         edgesForExtendedLayout = []
     }
     
