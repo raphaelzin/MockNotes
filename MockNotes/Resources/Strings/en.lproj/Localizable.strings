@@ -9,11 +9,18 @@
 /// General
 "save" = "Save";
 "cancel" = "Cancel";
+"ok" = "Ok";
 
 /// Home view
 "notes" = "Notes";
+"search_notes" = "Search notes";
 
 /// Details view
 "note" = "Note";
 "wait_thats_ilegal" = "Wait. That's illegal!";
 "we_have_a_problem" = "Houston, we have a problem.";
+
+/// Error
+"unknown_error" = "An unknown error occurred, good luck with that.";
+"invalid_note" = "The note seems to be invalid.";
+"empty_content_note" = "You cannot save an empty note. I mean, what would be the point?";
