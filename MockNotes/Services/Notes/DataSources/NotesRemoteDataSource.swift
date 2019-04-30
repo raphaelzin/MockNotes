@@ -29,23 +29,38 @@ class NotesRemoteDataSource: NotesDataSource {
     }
     
     func update(_ note: RNote, callback: @escaping ResponseHandler) {
-        let resource = Resource<Bool>(path: ENDPOINT_PREFIX + "notes/\(note.id)", method: .put)
+        // Make sure we are not saving an empty note
+        guard !note.content.isEmpty else {
+            callback(ACError.emptyContentNote)
+            return
+        }
+        let resource = Resource<RNote>(path: ENDPOINT_PREFIX + "notes/\(note.id)", method: .put)
         
         resource.request(parameters: note.dictionary) { (result) in
             callback(result.error as? RError)
         }
     }
     
-    func create(_ note: RNote, callback: @escaping ResponseHandler) {
-        let resource = Resource<Bool>(path: ENDPOINT_PREFIX + "notes", method: .post)
+    func save(_ content: String, callback: @escaping ResponseHandler) {
+        // Make sure no empty note is created
+        guard !content.isEmpty else {
+            callback(ACError.emptyContentNote)
+            return
+        }
         
-        resource.request(parameters: note.dictionary) { (result) in
+        let resource = Resource<RNote>(path: ENDPOINT_PREFIX + "notes", method: .post)
+        let params: [String: Any] = [
+            "createdAt": Date().formated(as: .iso8601),
+            "content": content
+        ]
+        
+        resource.request(parameters: params) { (result) in
             callback(result.error as? RError)
         }
     }
     
     func delete(_ note: RNote, callback: @escaping ResponseHandler) {
-        let resource = Resource<Bool>(path: ENDPOINT_PREFIX + "notes/\(note.id)", method: .delete)
+        let resource = Resource<RNote>(path: ENDPOINT_PREFIX + "notes/\(note.id)", method: .delete)
         
         resource.request { (result) in
             callback(result.error as? RError)

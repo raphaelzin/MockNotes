@@ -24,16 +24,16 @@ class NoteDetailsPresenter {
     // MARK: Attributes
     
     private let notesService = NotesService()
-    private let note: RNote
+    private let note: RNote?
     
     weak var coordinatorDelegate: NoteDetailsControllerDelegate?
     unowned var view: NoteDetailsView
     
-    private lazy var contentRelay = BehaviorRelay<String?>(value: note.content)
+    private lazy var contentRelay = BehaviorRelay<String?>(value: note?.content)
     
     // MARK: Initializer
     
-    init(view: NoteDetailsView, note: RNote) {
+    init(view: NoteDetailsView, note: RNote? = nil) {
         self.view = view
         self.note = note
         
@@ -45,10 +45,33 @@ class NoteDetailsPresenter {
 
 extension NoteDetailsPresenter: NoteDetailsViewPresenter {
     func saveChanges() {
-        note.content = contentRelay.value ?? ""
-        
+        // If there's a note, means that we're supposed to save changes to an existing note
+        if let note = note {
+            note.content = contentRelay.value ?? ""
+            update(note)
+        } else {
+            createNote(with: contentRelay.value ?? "")
+        }
+    }
+}
+
+// MARK: Private methods
+
+private extension NoteDetailsPresenter {
+    func update(_ note: RNote) {
         // Save changes and if there's an error, let the view know
         notesService.update(note) { [weak self] (error) in
+            if let error = error {
+                self?.view.display(error)
+            } else {
+                self?.coordinatorDelegate?.didRequestDismiss()
+            }
+        }
+    }
+    
+    func createNote(with content: String) {
+        // Save changes and if there's an error, let the view know
+        notesService.save(content) { [weak self] (error) in
             if let error = error {
                 self?.view.display(error)
             } else {

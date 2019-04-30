@@ -18,6 +18,8 @@ struct Localizable {
     
     struct Error {
         static let unknown = "unknown_error".localized
+        static let invalidNote = "invalid_note".localized
+        static let emptyContentNote = "empty_content_note".localized
     }
     
     

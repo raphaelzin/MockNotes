@@ -59,7 +59,6 @@ class NotesViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
-        
         presenter?.loadNotes() { }
     }
 }
@@ -69,6 +68,9 @@ class NotesViewController: UIViewController {
 private extension NotesViewController {
     func configureNavBar() {
         navigationItem.title = Localizable.Home.notes
+        
+        let addNote = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(requestNoteAdd))
+        navigationItem.rightBarButtonItem = addNote
     }
     
     func configureLayout() {
@@ -90,6 +92,10 @@ private extension NotesViewController {
         presenter?.loadNotes() { [weak self] in
             self?.refreshControl.endRefreshing()
         }
+    }
+    
+    @objc func requestNoteAdd() {
+        presenter?.addNote()
     }
 }
 
@@ -117,5 +123,15 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter?.didSelect(rowAt: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            presenter?.deleteNote(at: indexPath)
+        }
     }
 }

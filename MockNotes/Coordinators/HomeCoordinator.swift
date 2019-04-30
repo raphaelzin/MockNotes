@@ -42,6 +42,15 @@ extension HomeCoordinator: NotesViewControllerDelegate {
         
         navigationController.pushViewController(controller, animated: true)
     }
+    
+    func didRequestAddNote() {
+        let controller = NoteDetailsViewController()
+        let presenter = NoteDetailsPresenter(view: controller)
+        presenter.coordinatorDelegate = self
+        controller.presenter = presenter
+        
+        navigationController.pushViewController(controller, animated: true)
+    }
 }
 
 // MARK:
