@@ -22,9 +22,9 @@ struct Localizable {
         static let emptyContentNote = "empty_content_note".localized
     }
     
-    
     struct Home {
         static let notes = "notes".localized
+        static let searchNotes = "search_notes".localized
     }
     
     struct Details {

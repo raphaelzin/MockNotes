@@ -5,6 +5,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import SnapKit
 
 protocol NotesView: class {
@@ -14,6 +16,13 @@ protocol NotesView: class {
 class NotesViewController: UIViewController {
     
     // MARK: UI Components
+    
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = Localizable.Home.searchNotes
+        return searchController
+    }()
     
     private lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -35,6 +44,8 @@ class NotesViewController: UIViewController {
     
     var presenter: INotesPresenter?
     
+    private let disposeBag = DisposeBag()
+    
     // MARK: Initializers
     
     init() {
@@ -49,6 +60,7 @@ class NotesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureSearchBar()
         configureNavBar()
         configureLayout()
     }
@@ -68,9 +80,25 @@ class NotesViewController: UIViewController {
 private extension NotesViewController {
     func configureNavBar() {
         navigationItem.title = Localizable.Home.notes
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        }
+
         
         let addNote = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(requestNoteAdd))
         navigationItem.rightBarButtonItem = addNote
+    }
+    
+    func configureSearchBar() {
+        searchController.searchBar.delegate = self
+        
+        searchController.searchBar.rx.text.orEmpty
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe { [weak self] (event) in
+                guard let term = event.element else { return }
+                self?.presenter?.searchNotes(with: term)
+            }.disposed(by: disposeBag)
     }
     
     func configureLayout() {
@@ -90,7 +118,9 @@ private extension NotesViewController {
 private extension NotesViewController {
     @objc func refreshNotes() {
         presenter?.loadNotes() { [weak self] in
-            self?.refreshControl.endRefreshing()
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+            }
         }
     }
     
@@ -133,5 +163,13 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
         if (editingStyle == .delete) {
             presenter?.deleteNote(at: indexPath)
         }
+    }
+}
+
+// MARK: Search bar delegate
+
+extension NotesViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter?.loadNotes { }
     }
 }

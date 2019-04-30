@@ -14,6 +14,8 @@ protocol INotesPresenter: class {
     func didSelect(rowAt indexPath: IndexPath)
     func deleteNote(at indexPath: IndexPath)
     
+    func searchNotes(with term: String)
+    
     var numberOfNotes: Int { get }
 }
 
@@ -37,6 +39,14 @@ class NotesPresenter {
 // MARK: NotePresenter Implementation
 
 extension NotesPresenter: INotesPresenter {
+    func searchNotes(with term: String) {
+        notesService.fetchNotes { [weak self] notes in
+            // Filters notes that does not contain the terms being search. If term is empty show all notes.
+            self?.notes = term.isEmpty ? (notes ?? []) : (notes ?? []).filter { $0.content.contains(term) }
+            self?.view.updateData()
+        }
+    }
+    
     func deleteNote(at indexPath: IndexPath) {
         notesService.delete(note: notes[indexPath.row]) { [weak self] (error) in
             if let error = error {

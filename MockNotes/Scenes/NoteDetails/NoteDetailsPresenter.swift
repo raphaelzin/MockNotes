@@ -58,6 +58,7 @@ extension NoteDetailsPresenter: NoteDetailsViewPresenter {
 // MARK: Private methods
 
 private extension NoteDetailsPresenter {
+    
     func update(_ note: RNote) {
         // Save changes and if there's an error, let the view know
         notesService.update(note) { [weak self] (error) in
