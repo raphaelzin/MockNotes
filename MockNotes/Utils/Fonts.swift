@@ -9,4 +9,14 @@
 import UIKit
 
 struct Fonts {
+    enum Nunito: String {
+        case regular = "Regular"
+        case semiBold = "SemiBold"
+        case extraBold = "ExtraBold"
+        
+        /// Return the font with the given size
+        func size(_ size: CGFloat) -> UIFont {
+            return UIFont(name: "Nunito-\(self.rawValue)", size: size)!
+        }
+    }
 }

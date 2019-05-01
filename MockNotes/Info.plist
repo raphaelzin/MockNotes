@@ -36,6 +36,12 @@
 	<string>$(APP_NAME)</string>
 	<key>BACKEND_URL</key>
 	<string>$(BACKEND_URL)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Nunito-ExtraBold.ttf</string>
+		<string>Nunito-SemiBold.ttf</string>
+		<string>Nunito-Regular.ttf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

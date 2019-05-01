@@ -42,7 +42,8 @@ extension NotesPresenter: INotesPresenter {
     func searchNotes(with term: String) {
         notesService.fetchNotes { [weak self] notes in
             // Filters notes that does not contain the terms being search. If term is empty show all notes.
-            self?.notes = term.isEmpty ? (notes ?? []) : (notes ?? []).filter { $0.content.contains(term) }
+            // Using lowercased so the search is case insensitive.
+            self?.notes = term.isEmpty ? (notes ?? []) : (notes ?? []).filter { $0.content.lowercased().contains(term.lowercased()) }
             self?.view.updateData()
         }
     }

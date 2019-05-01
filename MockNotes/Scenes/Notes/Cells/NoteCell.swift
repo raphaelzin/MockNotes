@@ -14,12 +14,14 @@ class NoteCell: UITableViewCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
+        label.font = Fonts.Nunito.regular.size(13)
         return label
     }()
     
     private lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 3
+        label.font = Fonts.Nunito.semiBold.size(17)
         return label
     }()
     
@@ -44,7 +46,7 @@ private extension NoteCell {
         
         addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
-            make.bottom.trailing.equalTo(self).inset(UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 16))
+            make.bottom.trailing.equalTo(self).inset(UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 8))
             make.height.equalTo(16)
             make.top.equalTo(contentLabel.snp.bottom).offset(8)
         }

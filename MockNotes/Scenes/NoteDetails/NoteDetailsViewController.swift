@@ -23,6 +23,7 @@ class NoteDetailsViewController: UIViewController {
     private lazy var contentTextView: UITextView = {
         let tv = UITextView()
         tv.layer.cornerRadius = 8
+        tv.font = Fonts.Nunito.semiBold.size(17)
         tv.clipsToBounds = false
         return tv
     }()
